@@ -41,8 +41,29 @@ for chunk in client.models.generate_content_stream(
     print(chunk.text, end='')
 ```
 
+## Async Text Generation
+
+```python
+# Async text generation (non-streaming)
+async def generate_async():
+    response = await client.aio.models.generate_content(
+        model='gemini-2.5-flash',
+        contents='Write a poem about mountains'
+    )
+    return response.text
+```
+
+## Use Cases for Async
+
+Async operations are particularly useful for:
+- Handling multiple concurrent requests
+- Building async web applications (FastAPI, aiohttp)
+- Streaming responses in real-time
+- Non-blocking operations in event-driven systems
+
 ## Important Notes
 
 - **Streaming is not supported** with function calling or structured outputs
 - Use streaming for better user experience with long responses
 - Async streaming requires an async context
+- All SDK operations support async via the `client.aio` interface

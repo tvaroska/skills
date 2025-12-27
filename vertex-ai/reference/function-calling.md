@@ -2,6 +2,12 @@
 
 Enable models to call your functions for agentic workflows.
 
+**Contents:**
+- [Basic Function Calling](#basic-function-calling)
+- [Function with Type Hints](#function-with-type-hints)
+- [Handling Function Calls (Agentic Pattern)](#handling-function-calls-agentic-pattern)
+- [Important Notes](#important-notes)
+
 ## Basic Function Calling
 
 ```python

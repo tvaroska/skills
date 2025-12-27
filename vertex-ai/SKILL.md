@@ -1,6 +1,6 @@
 ---
 name: vertex-ai
-description: "Use Google Vertex AI Gemini models via google.genai SDK for text generation, structured JSON output, multimodal processing, and function calling"
+description: "Use Google Vertex AI Gemini models via google.genai SDK for text generation, structured JSON output, multimodal processing, and function calling. Use when: (1) User mentions Vertex AI, Gemini models, or google.genai SDK, (2) Working with Google Cloud Platform AI features, (3) Implementing generative AI features that require GCP integration, (4) User asks to use Google's latest AI models"
 ---
 
 # Vertex AI
@@ -101,7 +101,7 @@ except Exception as e:
 - `contents`: User prompt or message
 - `config.system_instruction`: Optional system-level guidance for the model
 
-**Error handling:** Always wrap API calls in try/except blocks to handle quota limits and invalid parameters. See [Error Handling](reference/error-handling.md) for details.
+**Error handling:** Always wrap API calls in try/except blocks to handle quota limits and invalid parameters. See [Error Handling](reference/error-handling.md) for more patterns and common issues.
 
 ## Structured Output Generation
 
@@ -134,7 +134,7 @@ result = ThemeList.model_validate_json(response.text)
 - `config.response_mime_type`: Set to `"application/json"` for JSON output
 - `config.response_json_schema`: Provide a JSON schema (use Pydantic's `model_json_schema()`)
 
-The model will return JSON matching the provided schema, enabling type-safe parsing.
+The model will return JSON matching the provided schema, enabling type-safe parsing. See [Configuration](reference/configuration.md) for additional generation parameters like temperature and top_p.
 
 ## Multimodal Inputs
 
@@ -205,32 +205,7 @@ response = client.models.generate_content(
 
 ## Async Support
 
-The SDK provides async support for non-blocking operations. Use the `client.aio` interface for async calls:
-
-```python
-# Async text generation
-async def generate_async():
-    response = await client.aio.models.generate_content(
-        model='gemini-2.5-flash',
-        contents='Write a poem about mountains'
-    )
-    return response.text
-
-# Async streaming (for real-time output)
-async def stream_async():
-    async for chunk in client.aio.models.generate_content_stream(
-        model='gemini-2.5-flash',
-        contents='Tell me a story'
-    ):
-        print(chunk.text, end='')
-```
-
-**Note:** Async is particularly useful for:
-- Handling multiple concurrent requests
-- Building async web applications (FastAPI, aiohttp)
-- Streaming responses in real-time
-
-See [Streaming](reference/streaming.md) for more async examples.
+The SDK supports async operations via the `client.aio` interface. See [Streaming](reference/streaming.md) for async examples and patterns.
 
 ## Additional Resources
 
