@@ -255,6 +255,29 @@ Choose models based on your requirements:
 - Most models: any region (e.g., `us-central1`)
 - `gemini-3-pro-preview`: requires `location='global'`
 
+## Related Skills
+
+### Building Agents Locally
+
+Before deploying to Agent Engine, build and test agents locally:
+- **[google-adk](../google-adk/SKILL.md)** - Agent Development Kit for creating agents with tools, multi-agent systems, and local testing
+
+The ADK provides the `genai.Agent` class used in the Quick Start above, along with development UI, evaluation tools, and more.
+
+### Agent Communication Protocol
+
+To make your deployed agents discoverable and enable standardized communication:
+- **[a2a](../a2a/SKILL.md)** - A2A Protocol for agent-to-agent communication
+- See the A2A skill for how to expose Agent Engine deployments via A2A endpoints for distributed multi-agent systems
+
+### Direct Model API Access
+
+Agent Engine uses Vertex AI models under the hood. For direct API access:
+- **[vertex-ai](../vertex-ai/SKILL.md)** - Low-level Vertex AI SDK for Gemini and Claude models
+
+**Use Agent Engine when:** Deploying production agents with managed infrastructure, sessions, and monitoring
+**Use vertex-ai SDK directly when:** Building custom applications with fine-grained model control
+
 ## Advanced Topics
 
 ### Framework Integration
@@ -295,9 +318,15 @@ except exceptions.FailedPrecondition as e:
 - **Concurrency**: Default limit of 10 concurrent queries per agent
 - **Cold starts**: First query after deployment may take 30-60 seconds
 
-## Resources
+## Reference Documentation
 
-- **references/agent-engine-services.md** - Sessions, Memory Bank, Code Execution, Example Store
-- **references/frameworks.md** - LangChain and LangGraph integration
-- **references/agent-starter-pack.md** - Production templates and deployment
-- **references/examples.md** - Complete agent examples (RAG, multi-agent, etc.)
+- **[agent-engine-services.md](references/agent-engine-services.md)** - Sessions, Memory Bank, Code Execution, Example Store
+- **[frameworks.md](references/frameworks.md)** - LangChain and LangGraph integration
+- **[agent-starter-pack.md](references/agent-starter-pack.md)** - Production templates and deployment
+- **[examples.md](references/examples.md)** - Complete agent examples (RAG, multi-agent, etc.)
+
+## Additional Resources
+
+- **Vertex AI Agent Engine Documentation**: https://cloud.google.com/vertex-ai/docs/reasoning-engine
+- **ADK Documentation**: https://github.com/google/adk-docs
+- **Google Cloud Console**: https://console.cloud.google.com/vertex-ai

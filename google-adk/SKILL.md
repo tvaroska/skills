@@ -187,6 +187,32 @@ agent = LlmAgent(
 )
 ```
 
+## Related Skills
+
+### Multi-Agent Communication
+
+For agent-to-agent communication across distributed services:
+- **[a2a](../a2a/SKILL.md)** - A2A Protocol for standardized agent discovery and communication between independent services
+- See [A2A Integration](references/a2a-integration.md) for how to expose ADK agents via A2A protocol
+
+**Use ADK sub_agents when:** Multiple agents in a single application with shared context
+**Use A2A protocol when:** Agents are separate services that need to discover and communicate with each other
+
+### Direct Model API Access
+
+This framework abstracts model calls for convenience. For direct, low-level API access:
+- **[vertex-ai](../vertex-ai/SKILL.md)** - Low-level Vertex AI SDK for Gemini and Claude models with fine-grained control
+
+**Use ADK when:** Building complete agents with tools, evaluation, and orchestration
+**Use vertex-ai SDK when:** Need custom logic, learning fundamentals, or fine-grained control
+
+### Production Deployment
+
+To deploy ADK agents to managed infrastructure:
+- **[vertex-agent-engine](../vertex-agent-engine/SKILL.md)** - Deploy agents to Vertex AI with sessions, memory, monitoring, and auto-scaling
+
+See [Deployment](references/deployment.md) for deployment patterns including Cloud Run, Vertex AI Agent Engine, and GKE.
+
 ## Development UI
 
 Test and debug agents locally:
@@ -284,8 +310,18 @@ async def run_async():
 result = asyncio.run(run_async())
 ```
 
-## Documentation
+## Reference Documentation
 
-Official documentation: https://github.com/google/adk-docs
-Repository: https://github.com/google/adk-python
-API Reference: https://github.com/google/adk-docs/blob/main/docs/api-reference/python/
+For detailed information on advanced features:
+
+- **[agents.md](references/agents.md)** - Agent patterns, multi-agent systems, workflows
+- **[tools.md](references/tools.md)** - Built-in tools, custom tools, integrations
+- **[deployment.md](references/deployment.md)** - Cloud Run, Vertex AI, GKE deployment
+- **[advanced.md](references/advanced.md)** - Callbacks, sessions, streaming, events
+- **[a2a-integration.md](references/a2a-integration.md)** - Exposing ADK agents via A2A protocol
+
+## Additional Resources
+
+- **Official Documentation**: https://github.com/google/adk-docs
+- **Repository**: https://github.com/google/adk-python
+- **API Reference**: https://github.com/google/adk-docs/blob/main/docs/api-reference/python/

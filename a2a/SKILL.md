@@ -423,63 +423,28 @@ class ConversationalExecutor(AgentExecutor):
 
 See [multi-turn.md](references/multi-turn.md) for advanced conversation patterns, context management, and state handling.
 
-### 7. Integrating LLMs
+## Related Skills
 
-Integrate language models into your agent executors.
+### Building Agents with ADK
 
-**Example with Gemini:**
+For building A2A-compliant agents using a high-level framework:
+- **[google-adk](../google-adk/SKILL.md)** - Agent Development Kit with tools, multi-agent support, and evaluation
+- See [ADK Integration](references/adk-integration.md) for how to wrap ADK agents with A2A protocol
 
-```python
-from google import genai
-from a2a.server.agent_execution import AgentExecutor
+**Use A2A + ADK when:** You want to build capable agents with tools AND expose them via standardized A2A protocol
 
-class GeminiExecutor(AgentExecutor):
-    def __init__(self, api_key: str):
-        self.client = genai.Client(api_key=api_key)
+### Deploying A2A Servers
 
-    async def execute(self, context: RequestContext, event_queue: EventQueue):
-        user_text = context.message.parts[0].text
+To deploy your A2A servers to production:
+- **[vertex-agent-engine](../vertex-agent-engine/SKILL.md)** - Deploy agents to managed infrastructure with monitoring and auto-scaling
+- Can deploy ADK agents that expose A2A endpoints for distributed agent communication
 
-        # Call Gemini
-        response = await self.client.aio.models.generate_content(
-            model="gemini-2.0-flash-exp",
-            contents=user_text
-        )
+### Direct Model APIs
 
-        # Send response
-        message = Message(
-            role="agent",
-            parts=[Part(type="text", text=response.text)]
-        )
-        await event_queue.put(message)
+For integrating language models into your A2A agents:
+- **[vertex-ai](../vertex-ai/SKILL.md)** - Low-level Vertex AI SDK for Gemini and Claude models with function calling, streaming, and multimodal support
 
-        # Complete task
-        task = Task(id=context.task_id, status="completed")
-        await event_queue.put(task)
-```
-
-**With Streaming:**
-
-```python
-async def execute(self, context: RequestContext, event_queue: EventQueue):
-    user_text = context.message.parts[0].text
-
-    # Stream from Gemini
-    async for chunk in await self.client.aio.models.generate_content_stream(
-        model="gemini-2.0-flash-exp",
-        contents=user_text
-    ):
-        if chunk.text:
-            message = Message(
-                role="agent",
-                parts=[Part(type="text", text=chunk.text)]
-            )
-            await event_queue.put(message)
-
-    # Complete task
-    task = Task(id=context.task_id, status="completed")
-    await event_queue.put(task)
-```
+See [LLM Integration Guide](references/llm-integration.md) for detailed examples of integrating Gemini, Claude, and other models into your A2A agents.
 
 ## Reference Documentation
 
@@ -492,6 +457,7 @@ For advanced topics, see the reference documentation:
 - **[events-messages.md](references/events-messages.md)** - Event types, message structure
 - **[multi-turn.md](references/multi-turn.md)** - Conversation management, context handling
 - **[error-handling.md](references/error-handling.md)** - Error patterns, retry logic, debugging
+- **[llm-integration.md](references/llm-integration.md)** - Integrating Gemini, Claude, and other LLMs
 
 ## Common Patterns
 

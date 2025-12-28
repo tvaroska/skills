@@ -129,7 +129,7 @@ client = AnthropicVertex(
 | **claude-opus-4-5@20251101** | Most intelligent, coding, agents | Medium | High | 200K context |
 | **claude-haiku-4-5@20251001** | Fast responses, simple tasks | Very Fast | Low | 200K context |
 
-See [reference/claude.md](reference/claude.md) for complete Claude model list and details.
+See [references/claude.md](references/claude.md) for complete Claude model list and details.
 
 ### Choosing Between Gemini and Claude
 
@@ -185,7 +185,7 @@ except Exception as e:
 - `contents`: User prompt or message
 - `config.system_instruction`: Optional system-level guidance for the model
 
-**Error handling:** Always wrap API calls in try/except blocks to handle quota limits and invalid parameters. See [Error Handling](reference/error-handling.md) for more patterns and common issues.
+**Error handling:** Always wrap API calls in try/except blocks to handle quota limits and invalid parameters. See [Error Handling](references/error-handling.md) for more patterns and common issues.
 
 ## Structured Output Generation
 
@@ -218,7 +218,7 @@ result = ThemeList.model_validate_json(response.text)
 - `config.response_mime_type`: Set to `"application/json"` for JSON output
 - `config.response_json_schema`: Provide a JSON schema (use Pydantic's `model_json_schema()`)
 
-The model will return JSON matching the provided schema, enabling type-safe parsing. See [Configuration](reference/configuration.md) for additional generation parameters like temperature and top_p.
+The model will return JSON matching the provided schema, enabling type-safe parsing. See [Configuration](references/configuration.md) for additional generation parameters like temperature and top_p.
 
 ## Multimodal Inputs
 
@@ -289,18 +289,40 @@ response = client.models.generate_content(
 
 ## Async Support
 
-The SDK supports async operations via the `client.aio` interface. See [Streaming](reference/streaming.md) for async examples and patterns.
+The SDK supports async operations via the `client.aio` interface. See [Streaming](references/streaming.md) for async examples and patterns.
 
-## Additional Resources
+## Building Agents
+
+This skill provides low-level SDK access for direct model API calls. For building production agents with tools, workflows, and orchestration, see:
+
+- **[google-adk](../google-adk/SKILL.md)** - Agent Development Kit for code-first agent development with rich tool ecosystem, multi-agent systems, and built-in evaluation
+- **[vertex-agent-engine](../vertex-agent-engine/SKILL.md)** - Deploy ADK agents to managed infrastructure with sessions, memory, and monitoring
+- **[a2a](../a2a/SKILL.md)** - Agent-to-agent communication protocol for distributed multi-agent systems
+
+**When to use each:**
+- Use this skill (vertex-ai SDK) for: Fine-grained control, custom logic, learning the fundamentals
+- Use google-adk for: Complete agents with tools, testing/evaluation, multi-agent hierarchies
+- Use vertex-agent-engine for: Production deployment with managed infrastructure
+- Use a2a for: Distributed agents that need to discover and communicate across services
+
+See [When to Use ADK](references/when-to-use-adk.md) for detailed guidance on choosing between SDK and framework approaches.
+
+## Reference Documentation
 
 ### Gemini-Specific References
 
-- **[Error Handling](reference/error-handling.md)** - Error handling and common issues
-- **[Configuration](reference/configuration.md)** - Generation parameters (temperature, top_p, etc.)
-- **[Streaming](reference/streaming.md)** - Streaming responses (sync and async)
-- **[Chat](reference/chat.md)** - Multi-turn conversations
-- **[Function Calling](reference/function-calling.md)** - Enable models to call your functions
+- **[Error Handling](references/error-handling.md)** - Error handling and common issues
+- **[Configuration](references/configuration.md)** - Generation parameters (temperature, top_p, etc.)
+- **[Streaming](references/streaming.md)** - Streaming responses (sync and async)
+- **[Chat](references/chat.md)** - Multi-turn conversations
+- **[Function Calling](references/function-calling.md)** - Enable models to call your functions
 
 ### Claude-Specific Reference
 
-- **[Claude on Vertex AI](reference/claude.md)** - Complete guide: models, streaming, vision, tool use, batch predictions
+- **[Claude on Vertex AI](references/claude.md)** - Complete guide: models, streaming, vision, tool use, batch predictions
+
+## Additional Resources
+
+- **Google AI for Developers**: https://ai.google.dev/
+- **Vertex AI Documentation**: https://cloud.google.com/vertex-ai/docs
+- **Anthropic Documentation**: https://docs.anthropic.com/
