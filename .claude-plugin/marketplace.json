@@ -17,6 +17,12 @@
       "skills": [
         "./google-adk"
       ]
+    },
+    {
+      "name": "workflow",
+      "description": "Sprint-based planning workflow with TODO.md, roadmap, and feature tracking",
+      "source": "./",
+      "strict": false
     }
- ]
+  ]
 }
