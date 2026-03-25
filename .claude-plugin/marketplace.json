@@ -1,12 +1,12 @@
 {
-  "name": "google-adk-skills",
+  "name": "personal-plugin",
   "owner": {
     "name": "Boris Tvaroska",
     "email": "tvaroska@google.com"
   },
   "metadata": {
-    "description": "Skills to develop and deploy Google-ADK agents",
-    "version": "1.0.0"
+    "description": "Personal plugin with workflow commands and Google ADK skills",
+    "version": "1.0.1"
   },
   "plugins": [
     {
