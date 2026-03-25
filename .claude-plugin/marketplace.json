@@ -21,7 +21,7 @@
     {
       "name": "workflow",
       "description": "Sprint-based planning workflow with TODO.md, roadmap, and feature tracking",
-      "source": "./",
+      "source": "./workflow",
       "strict": false
     }
   ]

@@ -9,6 +9,18 @@ Sprint 0 is the always-active triage lane for production readiness, security, an
 
 Initial description: $ARGUMENTS
 
+## Detect Context
+
+1. **Check for `.repos.json`** in the current directory.
+   - If found → **central repo**: ask which repo to target (see below)
+   - If not found → check if a parent directory has `.repos.json` → **inside subrepo**: target current repo's TODO.md
+   - If neither → **single-repo mode**: target current directory's TODO.md
+
+2. **Repo selection (central only):**
+   - Read `.repos.json` to get repo list
+   - AskUserQuestion: "Which repo should this task be added to?" with options: "central" + each registered repo name
+   - Resolve target TODO.md path: `.` for central, `{repo.path}/` for subrepo
+
 ## Gather Information
 
 Use AskUserQuestion to collect:
@@ -35,7 +47,7 @@ Use AskUserQuestion to collect:
 
 ## Generate Task ID
 
-1. Read TODO.md and find the Sprint 0 section
+1. Read the target TODO.md and find the Sprint 0 section
 2. Look for counter comment: `<!-- Counters: BUG=N SEC=N ... -->`
    - If found, read the counter for the chosen category and increment
    - If not found, scan for highest `S0-{CATEGORY}-N` number and add 1
@@ -43,7 +55,7 @@ Use AskUserQuestion to collect:
 
 ## Add to TODO.md
 
-1. Insert task in Sprint 0 section, maintaining priority order (P0 first, then P1, then P2):
+1. Insert task in Sprint 0 section of the target TODO.md, maintaining priority order (P0 first, then P1, then P2):
    ```
    - [ ] **S0-{CATEGORY}-{N}**: {Description} ({Severity}, {Effort})
          Added: {today's date}
@@ -58,7 +70,7 @@ Use AskUserQuestion to collect:
 
 ```
 Task added to Sprint 0: S0-{CATEGORY}-{N}
-Location: TODO.md > Sprint 0
+Location: {repo-name}/TODO.md > Sprint 0
 Severity: {Severity}
 Effort: {Effort}
 ```

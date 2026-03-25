@@ -38,3 +38,25 @@ P0 (critical) > P1 (high) > P2 (medium). P0 issues should be addressed immediate
 ### Test Command
 
 Run `{TEST_COMMAND}` before committing. Tests must pass before marking tasks complete.
+
+### Multi-Repo (if applicable)
+
+This is a multi-repo workspace. The central repo aggregates planning across subrepos.
+
+| File | Purpose |
+|------|---------|
+| `.repos.json` | Registry of subrepo subdirectories |
+| `{repo}/TODO.md` | Repo-specific sprint tasks |
+| `{repo}/docs/` | Repo-specific documentation |
+
+**Context detection:** Commands auto-detect whether you're in the central repo (has `.repos.json`) or inside a subrepo.
+
+- **From central:** `/open` and `/status` show aggregated views across all repos. `/new-task` and `/new-feature` ask which repo to target.
+- **From subrepo:** Commands scope to that repo only.
+- **Task display:** Aggregated views prefix repo name: `[api] S0-BUG-1`
+
+**Commands:**
+- `/repos` — list registered subrepos with task counts
+- `/repos add <dir>` — register a subdirectory as a subrepo
+- `/repos remove <dir>` — unregister a subrepo
+- `/repos setup <dir>` — initialize workflow files in a subrepo

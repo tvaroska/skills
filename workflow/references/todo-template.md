@@ -3,6 +3,7 @@
 **Last Updated:** {DATE}
 **Current Focus:** Sprint 0 (Foundation)
 **Cadence:** 2-week sprints
+{REPO_LINE}
 
 > See [docs/roadmap.md](docs/roadmap.md) for strategic overview
 > See [docs/features/](docs/features/) for feature history

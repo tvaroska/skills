@@ -1,6 +1,6 @@
 {
   "name": "workflow",
-  "description": "Sprint-based planning workflow with TODO.md, roadmap, feature tracking, and guided task management",
+  "description": "Sprint-based planning workflow with TODO.md, roadmap, feature tracking, guided task management, and multi-repo aggregation",
   "author": {
     "name": "Boris Tvaroska",
     "email": "tvaroska@google.com"
