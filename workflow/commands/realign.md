@@ -25,6 +25,52 @@ already have planning/doc artifacts.
 Run the detection + plan steps below **per repo in scope**. In multi-repo mode,
 present one combined plan covering every repo before executing anything.
 
+### Guard: workspace of independent nested repos
+
+Before planning any multi-repo or central-mode migration, check whether the
+immediate subdirectories are **independent git repos** rather than plain
+directories of THIS repo. A subdir is an independent repo if it has its own
+`.git` AND is untracked/gitignored by the current repo:
+
+```bash
+for d in */; do
+  [ -d "$d/.git" ] || git -C "$d" rev-parse --git-dir >/dev/null 2>&1 || continue
+  tracked=$(git ls-files --error-unmatch "$d" 2>/dev/null | head -1)
+  ignored=$(git check-ignore "$d" 2>/dev/null)
+  [ -z "$tracked" ] && echo "INDEPENDENT: $d (own history${ignored:+, gitignored})"
+done
+```
+
+If any subdir is an independent repo, this is a **workspace**, not a monorepo.
+`/realign`'s central/`git mv` model spans ONE repo boundary and CANNOT migrate
+independent nested repos (their files aren't tracked here, and each has its own
+history + remote to preserve). In that case:
+
+- **STOP before executing.** Do not attempt a central migration across them.
+- **Warn the user explicitly** and **recommend running `/realign` inside each
+  sub-repo separately**, one boundary at a time (each gets its own dry-run and
+  its own `gen3-realign` branch). List the sub-repos found and which carry
+  legacy planning artifacts (`PLAN.md`/`TODO.md`/`wiki/`/flat `docs/`), e.g.:
+
+  ```
+  ⚠ This looks like a workspace of independent git repos, not a monorepo.
+    /realign migrates within a single repo boundary and can't cross these.
+    Run it inside each sub-repo instead:
+
+      cd bingo      && /realign      # PLAN.md + TODO.md present (will merge)
+      cd content    && /realign      # PLAN.md
+      cd downloader && /realign      # PLAN.md
+      cd services   && /realign      # PLAN.md
+      # kernel-panic: no planning artifacts — use /setup if you want gen-3
+
+    (Sub-repos with both PLAN.md and TODO.md will be flagged for merge review.)
+  ```
+
+- You MAY still realign the workspace root's OWN tracked artifacts (its
+  `CLAUDE.md`/`docs/`) in single-repo mode, and optionally create a `.repos.json`
+  registry pointing at the sub-repos — but the per-sub-repo content migration
+  must be run inside each one. Confirm with the user before doing the root only.
+
 ## Step 1 — Detect Current State
 
 Inspect the target directory and classify it. Record findings; they drive the plan.
