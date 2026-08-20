@@ -1,0 +1,8 @@
+1. log of learning and decision for agent to leadn.
+2. what is in gitgnore
+3. review commad
+4. issue or user feedback process
+5. critical parts - needs higher level of scrutiny
+6. documentation in two pards - specification (requirements) and docu - implementation decisision/architecture etc
+7. rebuild skill
+

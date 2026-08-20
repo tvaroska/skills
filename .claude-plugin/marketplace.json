@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Personal plugin with workflow commands and Google ADK skills",
-    "version": "1.0.1"
+    "version": "2.0.0"
   },
   "plugins": [
     {
@@ -20,7 +20,7 @@
     },
     {
       "name": "workflow",
-      "description": "Sprint-based planning workflow with TODO.md, roadmap, and feature tracking",
+      "description": "Gen-3 sprint-based planning workflow: TODO.md, spec/design/docs, T1/T2/T3 verification ladder, autonomous implement-all, and /realign migration",
       "source": "./workflow",
       "strict": false
     }

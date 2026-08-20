@@ -1,6 +1,6 @@
 {
   "name": "workflow",
-  "description": "Sprint-based planning workflow with TODO.md, roadmap, feature tracking, guided task management, and multi-repo aggregation",
+  "description": "Gen-3 sprint-based planning workflow: TODO.md tasks, spec/design/docs layout, T1/T2/T3 verification ladder (build+lint, acceptance execution, CUJ simulation), DECISIONS/CRITICAL registries, autonomous implement-all drain, multi-repo aggregation, and /realign migration.",
   "author": {
     "name": "Boris Tvaroska",
     "email": "tvaroska@google.com"

@@ -2,28 +2,26 @@
 
 **Last Updated:** {DATE}
 
-## Strategic Overview
-
-High-level priorities and feature areas for the project.
+Strategic priorities by feature area and the release plan. Planning doc (`docs/`).
+Roadmap is intent, not live status — per-task status/counts live in `TODO.md`.
+Map releases to the CUJs (`spec/cujs.md`) they deliver.
 
 ---
 
 ## Feature Areas
 
-### Area 1
+### [Area 1 — slug matches task feature slug]
 
-**Status:** Planned
-**Priority:** --
-**Progress:** 0%
+**Priority:** [P0 | P1 | P2]
+**Delivers CUJs:** [CUJ ids]
 
 Goals:
 - TBD
 
-### Area 2
+### [Area 2]
 
-**Status:** Planned
 **Priority:** --
-**Progress:** 0%
+**Delivers CUJs:** --
 
 Goals:
 - TBD
@@ -35,9 +33,21 @@ Goals:
 ### v1.0 — MVP
 
 - Core functionality
-- Basic testing
-- Initial deployment
+- Delivers: [CUJ ids]
+- Verification: T3 CUJ suite green via `/verify`
+
+### vNext
+
+- ...
 
 ---
 
-**Updated by:** /replan command
+## CUJ → Release map
+
+| CUJ | Release / Sprint | Notes |
+|-----|------------------|-------|
+| CUJ-1 | v1.0 / S1 | ... |
+
+---
+
+**Updated by:** /replan
