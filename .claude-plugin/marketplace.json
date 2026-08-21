@@ -5,19 +5,10 @@
     "email": "tvaroska@google.com"
   },
   "metadata": {
-    "description": "Personal plugin with workflow commands and Google ADK skills",
+    "description": "Personal plugin with workflow commands",
     "version": "2.0.0"
   },
   "plugins": [
-    {
-      "name": "google-adk",
-      "description": "Skill to create and test ADK agents",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./google-adk"
-      ]
-    },
     {
       "name": "workflow",
       "description": "Gen-3 sprint-based planning workflow: TODO.md, spec/design/docs, T1/T2/T3 verification ladder, autonomous implement-all, and /realign migration",
